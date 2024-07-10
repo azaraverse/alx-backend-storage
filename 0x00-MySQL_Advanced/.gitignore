@@ -1,2 +1,4 @@
 *.sql~
 temp_res
+*main.sql
+4-init.sql
