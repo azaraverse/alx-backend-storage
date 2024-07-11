@@ -2,6 +2,10 @@
 
 -- Create function
 DELIMITER $$
+
+-- Drop function if it exists
+DROP FUNCTION IF EXISTS SafeDiv $$
+
 CREATE FUNCTION SafeDiv(a INT, b INT) RETURNS FLOAT DETERMINISTIC
 BEGIN
     -- Declare return variable
