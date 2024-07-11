@@ -5,7 +5,7 @@ DELIMITER $$
 CREATE FUNCTION SafeDiv(a INT, b INT) RETURNS FLOAT DETERMINISTIC
 BEGIN
     -- Declare return variable
-    DECLARE result FLOAT DETERMINISTIC;
+    DECLARE result FLOAT;
 
     -- check if the denominator equals 0
     IF b = 0 THEN
