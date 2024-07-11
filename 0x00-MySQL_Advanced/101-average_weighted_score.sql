@@ -23,7 +23,6 @@ BEGIN
 
     -- Update the users table with the computed weighted average score
     UPDATE users
-    SET average_score = average_weighted_score
-    WHERE id = users.id;
+    SET average_score = average_weighted_score;
 END $$
 DELIMITER ;
