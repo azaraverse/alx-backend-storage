@@ -2,12 +2,12 @@
 
 -- Create function
 DELIMITER $$
-CREATE FUNCTION SafeDiv(a INT, b INT) RETURNS INT
+CREATE FUNCTION SafeDiv(a INT, b INT) RETURNS FLOAT DETERMINISTIC
 BEGIN
     -- Declare variables
     DECLARE numerator INT;
     DECLARE denominator INT;
-    DECLARE result INT;
+    DECLARE result;
 
     -- Set arguments to declared variables
     SET numerator = a;
