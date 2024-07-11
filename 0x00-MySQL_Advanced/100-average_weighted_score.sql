@@ -8,7 +8,7 @@ CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
 BEGIN
     -- declare variables
     DECLARE total_weighted_score FLOAT DEFAULT 0;
-    DECLARE total_weight FLOAT DEFAULT 0;
+    DECLARE total_weight INT DEFAULT 1;
     DECLARE average_weighted_score FLOAT DEFAULT 0;
 
     -- calculate the total weighted score and total weight for the given user
