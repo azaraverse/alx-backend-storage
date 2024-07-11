@@ -2,7 +2,7 @@
 
 DELIMITER $$
 -- Drop stored procedure if exists
-DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUsers;
+DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUsers $$
 -- Create stored procedure
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers()
 BEGIN
@@ -23,6 +23,7 @@ BEGIN
 
     -- Update the users table with the computed weighted average score
     UPDATE users
-    SET average_score = average_weighted_score;
+    SET average_score = average_weighted_score
+    WHERE id = users.id;
 END $$
 DELIMITER ;
