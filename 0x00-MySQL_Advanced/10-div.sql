@@ -4,20 +4,14 @@
 DELIMITER $$
 CREATE FUNCTION SafeDiv(a INT, b INT) RETURNS FLOAT DETERMINISTIC
 BEGIN
-    -- Declare variables
-    DECLARE numerator INT;
-    DECLARE denominator INT;
+    -- Declare return variable
     DECLARE result;
 
-    -- Set arguments to declared variables
-    SET numerator = a;
-    SET denominator = b;
-
     -- check if the denominator equals 0
-    IF denominator = 0 THEN
+    IF b = 0 THEN
         RETURN 0;
     -- Perform division if denominator passes
-    ELSE SET result = numerator / denominator;
+    ELSE SET result = a / b;
     END IF;
 
     RETURN result;
