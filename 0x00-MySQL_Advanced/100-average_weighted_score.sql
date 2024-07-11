@@ -7,7 +7,7 @@ DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUser;
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
 BEGIN
     -- declare variables
-    DECLARE total_weighted_score FLOAT DEFAULT 0
+    DECLARE total_weighted_score FLOAT DEFAULT 0;
     DECLARE total_weight FLOAT DEFAULT 0;
     DECLARE average_weighted_score FLOAT DEFAULT 0;
 
