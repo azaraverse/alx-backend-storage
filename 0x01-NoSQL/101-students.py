@@ -6,7 +6,10 @@ def top_students(mongo_collection):
     """"""
     top_students = mongo_collection.aggregate([
         {
-            '$group': {'_id': '$_id', 'name': {'$first':'$name'}, 'averageScore': {'$avg': '$score'}}
+            '$unwind': '$topics'
+        },
+        {
+            '$group': {'_id': '$_id', 'name': {'$first':'$name'}, 'averageScore': {'$avg': '$topics.score'}}
         },
         {
             '$sort': {'averageScore': -1}
