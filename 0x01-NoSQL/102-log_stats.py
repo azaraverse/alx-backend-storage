@@ -42,7 +42,7 @@ def log_stats(collection):
     # implement top 10 most present ips using aggregation pipelines
     ips = collection.aggregate([
         {
-            '$group': {'_ip': '$ip', 'count': {'$sum': 1}}
+            '$group': {'_id': '$ip', 'count': {'$sum': 1}}
         },
         {
             '$sort': {'count': -1}
@@ -53,7 +53,7 @@ def log_stats(collection):
     ])
     print('IPs:')
     for ip in ips:
-        print(f'\t{ip.get("_ip")}: {ip.get("count")}')
+        print(f'\t{ip.get("_id")}: {ip.get("count")}')
 
 
 if __name__ == '__main__':
