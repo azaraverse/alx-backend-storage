@@ -1,2 +1,2 @@
 // a mongodb command file that inserts a document in a collection
-db.school.insert({name: "Holberton School"})
+db.school.insert({name: "Holberton school"})
