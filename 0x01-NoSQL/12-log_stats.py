@@ -24,7 +24,7 @@ def log_stats(collection):
     print(f'\tmethod DELETE: {delete_count}')
 
     method_path = collection.count_documents(
-        {'method': {'$eq': 'GET'}}, {'path': {'$eq': '/status'}}
+        {'path': {'$eq': '/status'}}
     )
     print(f'{method_path} status check')
 
