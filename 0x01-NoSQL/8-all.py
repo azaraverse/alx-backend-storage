@@ -2,6 +2,7 @@
 """A python function that lists all documents in a MongoDB collection"""
 from typing import List
 
+
 def list_all(mongo_collection) -> List:
     """
     This function lists all documents in a MongoDB collection
