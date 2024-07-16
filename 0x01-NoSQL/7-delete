@@ -1,2 +1,2 @@
 // a mongodb command file that deletes all documents that match a type in a school
-db.school.deleteMany({"name": "Holberton School"})
+db.school.deleteMany({name: "Holberton school"})
