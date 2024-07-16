@@ -5,7 +5,7 @@ from pymongo import MongoClient
 
 def log_stats(collection):
     """"""
-    logs_count = collection.count()
+    logs_count = collection.count_documents({})
     print(f'{logs_count} logs')
 
 
