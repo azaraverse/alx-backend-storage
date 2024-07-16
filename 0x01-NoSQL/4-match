@@ -1,0 +1,2 @@
+// a mongodb command file that lists all documents that matches a query type
+db.school.find({"name": {"$eq": "Holberton School"}})

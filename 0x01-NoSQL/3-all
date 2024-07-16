@@ -1,0 +1,2 @@
+// a mongodb command file that lists all documents in a collection
+db.school.find()

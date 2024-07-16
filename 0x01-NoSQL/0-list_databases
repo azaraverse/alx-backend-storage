@@ -1,0 +1,2 @@
+// a mongodb command file that lists all databases
+show dbs

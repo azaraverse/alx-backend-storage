@@ -1,0 +1,2 @@
+// a mongodb command file that uses or creates a database
+use my_db

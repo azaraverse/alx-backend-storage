@@ -1,0 +1,2 @@
+// a mongodb command file that counts the number of documents in a collection
+db.school.count()
