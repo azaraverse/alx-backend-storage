@@ -12,6 +12,6 @@ def insert_school(mongo_collection, **kwargs):
     Returns:
         Object: The new _id object
     """
-    if mongo_collection is not None:
+    if mongo_collection:
         mongo_collection.insert_one(kwargs)
         return mongo_collection.inserted_id
