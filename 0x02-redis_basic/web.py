@@ -17,20 +17,24 @@ def cache(method: Callable) -> Callable:
         Decorator wrapper function
         """
         r = redis.Redis()
-        # increment the access count for the url
-        r.incr(f'count:{url}')
+        try:
+            # increment the access count for the url
+            r.incr(f'count:{url}')
 
-        # get the cached page content
-        cached_page = r.get(url)
-        if cached_page:
-            return cached_page.decode('utf-8')
+            # get the cached page content
+            cached_page = r.get(url)
+            if cached_page:
+                return cached_page.decode('utf-8')
 
-        # if not cached, get the original function
-        result = method(url)
+            # if not cached, get the original function
+            result = method(url)
 
-        # cache the result with a 10 sec expiration
-        r.setex(url, 10, result)
-        return result
+            # cache the result with a 10 sec expiration
+            r.setex(url, 10, result)
+            return result
+        except redis.ConnectionError:
+            # fallback on default function if redis fails
+            return method(url)
     return wrapper
 
 
@@ -45,8 +49,8 @@ def get_page(url: str) -> str:
     Returns:
         The HTML content
     """
-    resultponse = requests.get(url=url)
-    return resultponse.text
+    response = requests.get(url=url)
+    return response.text
 
 
 if __name__ == '__main__':
