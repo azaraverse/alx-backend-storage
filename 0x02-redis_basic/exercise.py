@@ -3,6 +3,24 @@
 import redis
 from uuid import uuid4
 from typing import Union, Callable, Optional, Any
+from functools import wraps
+
+
+def count_calls(method: Callable) -> Callable:
+    """
+    A decorator that takes a single argument and returns a Callable"""
+    key = method.__qualname__
+
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """
+        A wrapped Callable function that increments the count for a key
+        every time method is called and returns the value returned by the
+        original method.
+        """
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
+    return wrapper
 
 
 class Cache:
@@ -14,6 +32,7 @@ class Cache:
         # flush the instance using flushdb
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         Takes a data argument, generates a random uuid key and stores the
@@ -29,14 +48,12 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable]) -> Any:
+    def get(self, key: str, fn: Optional[Callable] = None) -> Any:
         """
         Takes a key string argument and a callable argument and converts
         the key using the callable to a desired format.
         """
         data = self._redis.get(key)
-        if not data:
-            return
 
         # if a conversion method is given, use it to format the data
         if fn:
