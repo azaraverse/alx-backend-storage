@@ -35,6 +35,8 @@ class Cache:
         the key using the callable to a desired format.
         """
         data = self._redis.get(key)
+        if not data:
+            return
 
         # if a conversion method is given, use it to format the data
         if fn:
